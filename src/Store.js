@@ -1,16 +1,18 @@
 import { observable, action, computed } from 'mobx'
 
-
 class dataStore {
-    @observable title = 'This is a demo title';
+    @observable posts = [];
 
-    @action changeTitle = (title) => {
-        this.title = title;
+    @action addPosts = (posts) => {
+        this.posts = posts;
     }
+    
+    @observable height = 6;
+    @observable weight = 70;
 
-    // @computed get newTtitle = () => {
-    //     return this.title + ' this is new title'
-    // }
+    @computed get bmi(){
+        return this.weight / this.height;
+    }
 }
 
 export default new dataStore();

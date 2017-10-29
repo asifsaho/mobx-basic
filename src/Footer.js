@@ -1,18 +1,27 @@
 import React from 'react'
+import axios from 'axios'
 
 class Footer extends React.Component {
-    constructor(props){
-        super(props)
+    constructor(props) {
+        super(props);
     }
 
-    changeValue = (event) => {
-        this.props.store.changeTitle('This is new title')
+
+    loadData = () => {
+        axios.get('https://jsonplaceholder.typicode.com/posts')
+            .then((res) => {
+                this.props.store.addPosts(res.data);
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
-    render(){
-        return(
+
+    render() {
+        return (
             <div>
-                <button onClick={this.changeValue}>Change</button>
+                <button onClick={this.loadData}>Load Data</button>
             </div>
         )
     }
